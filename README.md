@@ -4,7 +4,7 @@ Master the GitHub CLI for pull requests, issues, releases, Actions workflows, an
 
 ## What This Skill Does
 
-This is an **OpenCode Agent Skill** that teaches AI agents agentic patterns for the GitHub CLI (`gh`). Use it when you need OpenCode to:
+This is an **OpenCode Skill** that provides agentic patterns for the GitHub CLI (`gh`). Use it when you need OpenCode to:
 
 - Create, review, and merge pull requests
 - Manage GitHub issues with triage and linking
@@ -29,12 +29,8 @@ The skill prioritizes **token efficiency** — all patterns use `--jq` filtering
 OpenCode automatically discovers skills in these directories:
 
 ```
-~/.config/opencode/skills/
-~/.claude/skills/
-~/.agents/skills/
-.opencode/skills/          (project-local)
-.claude/skills/            (project-local)
-.agents/skills/            (project-local)
+.opencode/skills/<name>/SKILL.md          (project-local)
+~/.config/opencode/skills/<name>/SKILL.md (global)
 ```
 
 Choose one of the three installation methods below:
@@ -97,7 +93,7 @@ OpenCode will load the full skill content and use the patterns to execute your r
 
 ## Skill Contents
 
-The skill contains 8 reference documents organized by workflow:
+The skill contains 7 reference documents organized by workflow, plus the core skill definition:
 
 | File | Purpose |
 |------|---------|
