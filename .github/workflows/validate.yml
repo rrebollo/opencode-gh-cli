@@ -1,0 +1,68 @@
+name: Validate Skill
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'skills/**'
+      - '.github/workflows/validate.yml'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'skills/**'
+      - '.github/workflows/validate.yml'
+
+jobs:
+  validate-skill:
+    name: Validate SKILL.md
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check SKILL.md exists
+        run: |
+          if [ ! -f skills/gh-cli/SKILL.md ]; then
+            echo "❌ SKILL.md not found at skills/gh-cli/SKILL.md"
+            exit 1
+          fi
+          echo "✓ SKILL.md found"
+
+      - name: Validate SKILL.md frontmatter
+        run: |
+          # Check for required frontmatter fields
+          if ! grep -q "^name:" skills/gh-cli/SKILL.md; then
+            echo "❌ Missing 'name:' in frontmatter"
+            exit 1
+          fi
+          if ! grep -q "^description:" skills/gh-cli/SKILL.md; then
+            echo "❌ Missing 'description:' in frontmatter"
+            exit 1
+          fi
+          echo "✓ Required frontmatter fields present"
+
+      - name: Validate reference files exist
+        run: |
+          refs=(
+            "agentic-patterns.md"
+            "actions-and-ci.md"
+            "issue-workflows.md"
+            "output-formatting.md"
+            "pr-workflows.md"
+            "repo-management.md"
+            "search-and-query.md"
+          )
+          for ref in "${refs[@]}"; do
+            if [ ! -f "skills/gh-cli/references/$ref" ]; then
+              echo "❌ Missing reference file: $ref"
+              exit 1
+            fi
+          done
+          echo "✓ All 7 reference files present"
+
+      - name: Summary
+        run: |
+          echo "✓ Skill validation passed"
+          echo "  - SKILL.md with required frontmatter"
+          echo "  - 7 reference files"
