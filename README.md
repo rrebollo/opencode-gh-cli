@@ -77,17 +77,17 @@ git submodule update --remote
 
 ## Using the Skill
 
-In OpenCode, the skill is loaded on-demand. You can see it listed by opening the skill browser, or just ask OpenCode directly:
+In OpenCode, the skill is loaded automatically by the agent when relevant. You can:
 
-```
-/skill gh-cli
-```
+1. **List available skills** in the TUI with:
+   ```
+   /skills
+   ```
 
-Or in a conversation:
-
-```
-Use the gh-cli skill to create a PR for this branch
-```
+2. **Ask OpenCode to use the skill** in natural language:
+   ```
+   Use the gh-cli skill to create a PR for this branch
+   ```
 
 OpenCode will load the full skill content and use the patterns to execute your request.
 
