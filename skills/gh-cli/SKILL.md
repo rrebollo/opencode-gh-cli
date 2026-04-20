@@ -560,6 +560,7 @@ Deep dives into common workflows:
 - **Enterprise GitHub:** Set `GH_HOST=github.company.com` for GitHub Enterprise.
 - **Project scope:** Use `gh auth refresh -s project` to grant project scope if needed.
 - **Preview features:** Commands marked `(preview)` may change; use with caution in production automation.
+- **`gh api` and JSON arrays:** Never use `-F field='["a","b"]'` for array payloads — `-F` sends the value as a string literal, not parsed JSON. GitHub API returns HTTP 422 "not an array". Use `--input /tmp/payload.json` instead. See [references/search-and-query.md](references/search-and-query.md) → "Complex payloads".
 
 ---
 
